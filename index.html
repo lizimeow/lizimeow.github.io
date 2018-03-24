@@ -1,183 +1,41 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="lizimeow"><title>lizimeow's blog</title><meta name="description" content="A Web developer, Nice to meet you :)"><meta name="keywords" content="lizimeow blog hexo JavaScript"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">lizimeow's blog</a></h3><div class="description"><p>A Web developer, Nice to meet you :)</p></div></div></div><ul class="social-links"><li><a href="http://weibo.com/lizimeow"><i class="fa fa-weibo"></i></a></li><li><a href="http://github.com/lizimeow"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a class="current" href="/">Home</a></li><li><a href="/archives">Archive</a></li><li><a href="/links">Links</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"> </a></li></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2017/06/10/ RxJS学习-(2)-基本的 operators (二)/">RxJS 学习-(2)-基本的 operators (二)</a></h3></div><div class="post-content"><p>scanscan 其实是 Observable 版本的 reduce
+1234567891011121314const source = Rx.Observable.from('hello')				.zip(Rx.Observable.interval(600), (x, y) =&gt; x)const ex...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-06-10</span><i class="fa fa-tag"></i><a class="tag" href="/tags/RxJS/" title="RxJS">RxJS </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2017/05/25/ RxJS学习-(1)-基本的 operators (一)/">RxJS 学习-(1)-基本的 operators (一)</a></h3></div><div class="post-content"><p>Operators (一)take(n)
+取前n个元素
+first()
+first 会取 observable 送出的第一个元素之后就结束，相当于take(1)
+takeUntil( observable )
+在某件事情发生时，让一个 observable 直接发出完成信息，例：
+12345678var sour...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-05-25</span><i class="fa fa-tag"></i><a class="tag" href="/tags/RxJS/" title="RxJS">RxJS </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2017/05/17/ RxJS学习-(0)-从入门到入门/">RxJS学习-(0)-从入门到入门</a></h3></div><div class="post-content"><p>
+RxJS 入门要知道的基础知识
 
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-</head>
+RxJS 是一个由 Observable sequences 來组合非同步行为和事件基础程序的库
+RxJS 提供了一套完整的非同步解决方案，让我们在面对各种非同步操作时，不管是 Event, AJAX, 还是Animation 等，都可以使用相同的 API 进行操作
+這也被称为...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-05-17</span><i class="fa fa-tag"></i><a class="tag" href="/tags/RxJS/" title="RxJS">RxJS </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2017/04/10/ 浏览器缓存/">浏览器缓存</a></h3></div><div class="post-content"><p>
+Last-Modified浏览器第一次请求，服务器端的返回状态会是200，内容是你请求的资源，同时有一个Last-Modified的属性标记(HttpResponse Header)：此文件在服务器端最后被修改的时间，格式：Last-Modified:Tue, 24 Feb 2017 08:01:04 GMT
+...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-04-10</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2017/04/01/ 前端模块化/">前端模块化</a></h3></div><div class="post-content"><p>为了更好的管理网页的业务逻辑，产生了模块化编程的理念。
+常用的 JavaScript 的模块化规范有 CommonJS 、 AMD 、CMD
+CommonJS 规范
+服务器端的 Node.js 遵循 CommonJS 规范
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSSフィード"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="検索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/22/hello-world/" class="article-date">
-  <time datetime="2018-03-22T15:46:37.000Z" itemprop="datePublished">2018-03-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/22/hello-world/">Hello World</a>
-    </h1>
-  
+CommonJS定义的模块分为:模块引用(require)  模块定义(exports)...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-04-01</span><i class="fa fa-tag"></i><a class="tag" href="/tags/Web/" title="Web">Web </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2017/03/29/ Python笔记/">Python笔记</a></h3></div><div class="post-content"><p>输出用r&#39;&#39;表示&#39;&#39;内部的字符串默认不转义
+1234print('\\\t\\')#\       \print(r'\\\t\\')#\\\t\\
+用&#39;&#39;&#39;...&#39;&#39;&#39;的格式表示多行内容
+123print('''line1line2...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-03-29</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2017/03/23/ 前端状态管理之Flux、Redux、Vuex/">前端状态管理之Flux、Redux、Vuex</a></h3></div><div class="post-content"><p>
+Flux是一种前端状态管理架构思想。基于 Flux 的设计思想，出现了一批前端状态管理框架。比较主流的就是 Vuex 和 Redux 了。
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+两篇特别好的文章
+浅谈前端状态管理（上）
+浅谈前端状态管理（下）
+Flux Flux 的思维方式是单向的，将修改数据层的 controller 代码收归一处，统一管理，组...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-03-23</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2017/03/14/ 解决Canvas图片跨域问题/">解决Canvas图片跨域问题</a></h3></div><div class="post-content"><p>Uncaught DOMException: Failed to execute ‘getImageData’ on ‘CanvasRenderingContext2D’: The canvas has been tainted by cross-origin data.`
+在写canvas的时候要获取图像数据，...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-03-14</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2017/03/02/ Canvas学习笔记/">Canvas 学习笔记</a></h3></div><div class="post-content"><p>虚线使用setLineDash和lineDashOffset属性来设置虚线样式
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/22/hello-world/" data-id="cjf2p87h20000gktbitiyflup" class="article-share-link">共有</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
+setLineDash : 接受一个数组来制定虚线里的线段和间隙的长度
+如ctx.serLineDash([4,2])
+
+lineDashOffset : 设置虚线起始偏移量
 
 
-  
+12345678910111213141516171...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-03-02</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2017/02/20/【翻译】优化Web里的GIF/">【翻译】优化Web中的GIFs</a></h3></div><div class="post-content"><p>原文地址：https://bitsofco.de/optimising-gifs/
+跟很多人一样，我也很喜欢GIF。我喜欢在我的文章里使用它们来说明功能。就像在我 “Recreating the iTunes Library” 这篇文章里的这个GIF一样。
 
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">アーカイブ</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最近の投稿</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2018/03/22/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2018 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
-
-
-  </div>
-</body>
-</html>
+然而，在文章里使用GIF实在太_重_了，上面的这个GI...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-02-20</span><i class="fa fa-tag"></i><a class="tag" href="/tags/Web/" title="Web">Web </a></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/page/2/">Próximo</a></li></ul></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
