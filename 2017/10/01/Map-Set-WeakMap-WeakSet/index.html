@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="lizimeow"><title>Map Set WeakMap WeakSet · lizimeow's blog</title><meta name="description" content="SetSet 是 ES6 新增的有序列表集合, 他不会包含重复项. Set 支持 :
+
+add(item) 方法，用来向 Set 添加任意类型的元素，如果已经添加过则自动忽略
+has(item) 方法用来检测 Set 中是否存在指定元素
+delete(item) 方法用来从 Set 中删除指定元素
+"><meta name="keywords" content="lizimeow blog hexo JavaScript"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">lizimeow's blog</a></h3><div class="description"><p>A Web developer, Nice to meet you :)</p></div></div></div><ul class="social-links"><li><a href="http://weibo.com/lizimeow"><i class="fa fa-weibo"></i></a></li><li><a href="http://github.com/lizimeow"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">Home</a></li><li><a href="/archives">Archive</a></li><li><a href="/links">Links</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Map Set WeakMap WeakSet</a></h3></div><div class="post-content"><h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><p>Set 是 ES6 新增的有序列表集合, 他不会包含重复项. Set 支持 :</p>
+<ul>
+<li>add(item) 方法，用来向 Set 添加任意类型的元素，如果已经添加过则自动忽略</li>
+<li>has(item) 方法用来检测 Set 中是否存在指定元素</li>
+<li>delete(item) 方法用来从 Set 中删除指定元素</li>
+<li>clear() 用来清空 Set</li>
+<li>获取 Set 集合长度用 size 属性</li>
+</ul>
+<p>Set 调用 add, has, delete 等方法时对 key 进行的比较，不做类型转换。可以认为使用「===」进行比较，当然也不全是「===」：</p>
+<ul>
+<li>Set 中，NaN 只能添加一次（虽然NaN === NaN 返回 false）；</li>
+<li>Set 中，「-0」和「0 或 +0」可以同时存在，因为符号不一样（虽然 -0 === 0 或 -0 === +0 返回 true）；</li>
+</ul>
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><p>Map 是有序键值对集合, 键值对的 key 和 value 可以是任何类型的元素</p>
+<ul>
+<li>通过 <code>map.set(key, value)</code> 可以为 Map 添加新的键值对, 如果设置的 key 已经存在的话 ,就会用新的 value 覆盖.</li>
+<li>get(key) 方法用来获取指定的 key 的值</li>
+<li>map 的 has(key), delete(key), clear() 方法和 size 属性与 set 相似</li>
+</ul>
+<h3 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h3><p>可以用 <code>for...of</code>来遍历 set 跟 map</p>
+<p>返回可迭代对象的几个方法: entries(), keys(), values() </p>
+<ul>
+<li>直接遍历 set 和 map 相当于遍历entries()</li>
+<li>keys() 和values() 返回 key 和 value 的集合</li>
+</ul>
+<h3 id="weakMap"><a href="#weakMap" class="headerlink" title="weakMap"></a>weakMap</h3><p>WeakMap 相对于普通的 Map，也是键值对集合，只不过 WeakMap 的 key 只能是非空对象</p>
+<p>WeakMap 对它的 key 仅保持<strong>弱引用</strong>，也就是说它不阻止垃圾回收器回收它所引用的 key</p>
+<p>WeakMap 最大的好处是可以避免内存泄漏。一个仅被 WeakMap 作为 key 而引用的对象，会被垃圾回收器回收掉。</p>
+<p>WeakMap 拥有和 Map 类似的 set(key, value) 、get(key)、has(key)、delete(key) 和 clear() 方法，但没有 size 属性，也没有任何与迭代有关的方法。</p>
+<h3 id="weakSet"><a href="#weakSet" class="headerlink" title="weakSet"></a>weakSet</h3><p><code>WeakSet</code> 对象是一些对象值的集合, 并且其中的每个对象值都只能出现一次.</p>
+<p>它和 <code>Set</code>对象的区别有两点:</p>
+<ul>
+<li><code>WeakSet</code> 对象中只能存放<strong>对象引用</strong>, 不能存放值, 而 <code>Set</code> 对象都可以.</li>
+<li><code>WeakSet</code> 对象中存储的对象值都是被弱引用的, 如果没有其他的变量或属性引用这个对象值, 则这个对象值会被当成垃圾回收掉. 正因为这样, <code>WeakSet</code> 对象是无法被枚举的, 没有办法拿到它包含的所有元素.</li>
+</ul>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-10-01</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,http://lizimeow.com/2017/10/01/Map-Set-WeakMap-WeakSet/,lizimeow's blog,Map Set WeakMap WeakSet,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/2017/06/10/ RxJS学习-(2)-基本的 operators (二)/" title="RxJS 学习-(2)-基本的 operators (二)">Próximo post</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
