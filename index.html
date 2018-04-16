@@ -9,7 +9,11 @@
 add(item) 方法，用来向 Set 添加任意类型的元素，如果已经添加过则自动忽略
 has(item) 方法用来检测 Set 中是否存在指定元素
 delete(item) 方法用来从 Set 中删除指定元素
-clear()...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-10-01</span><i class="fa fa-tag"></i><a class="tag" href="/tags/JavaScript/" title="JavaScript">JavaScript </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2017/06/10/ RxJS学习-(2)-基本的 operators (二)/">RxJS 学习-(2)-基本的 operators (二)</a></h3></div><div class="post-content"><p>scanscan 其实是 Observable 版本的 reduce
+clear()...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-10-01</span><i class="fa fa-tag"></i><a class="tag" href="/tags/JavaScript/" title="JavaScript">JavaScript </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2017/06/20/ RxJS学习-(4)-处理高阶流/">RxJS 学习-(4)-处理高阶流</a></h3></div><div class="post-content"><p>处理高阶流(high order observable) 所谓高阶流就是指一个 observable 送出的元素还是一个 observable, 像是二维矩阵一样,通常我们需要的元素是第二层的 observable 送出的元素, 所以我们希望可以把二维的 observable 变成一维的
+switch在新的 ob...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-06-20</span><i class="fa fa-tag"></i><a class="tag" href="/tags/RxJS/" title="RxJS">RxJS </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2017/06/12/ RxJS学习-(3)-错误处理.1/">RxJS 学习-(3)-错误处理</a></h3></div><div class="post-content"><p>catch在 RxJS 中的 catch 能够回传一个 observable 来送出新的值
+直接看🌰:
+当错误发生后就会 catch 并重新处理一个新的 observable 我们可以利用这个新的 observable 来送出我们想送的值
+1234567891011const source = Rx.obser...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-06-12</span><i class="fa fa-tag"></i><a class="tag" href="/tags/RxJS/" title="RxJS">RxJS </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2017/06/10/ RxJS学习-(2)-基本的 operators (二)/">RxJS 学习-(2)-基本的 operators (二)</a></h3></div><div class="post-content"><p>scanscan 其实是 Observable 版本的 reduce
 1234567891011121314const source = Rx.Observable.from('hello')				.zip(Rx.Observable.interval(600), (x, y) =&gt; x)const ex...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-06-10</span><i class="fa fa-tag"></i><a class="tag" href="/tags/RxJS/" title="RxJS">RxJS </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2017/05/25/ RxJS学习-(1)-基本的 operators (一)/">RxJS 学习-(1)-基本的 operators (一)</a></h3></div><div class="post-content"><p>Operators (一)take(n)
 取前n个元素
 first()
@@ -28,13 +32,4 @@ Last-Modified浏览器第一次请求，服务器端的返回状态会是200，�
 CommonJS 规范
 服务器端的 Node.js 遵循 CommonJS 规范
 
-CommonJS定义的模块分为:模块引用(require)  模块定义(exports)...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-04-01</span><i class="fa fa-tag"></i><a class="tag" href="/tags/Web/" title="Web">Web </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2017/03/29/ Python笔记/">Python笔记</a></h3></div><div class="post-content"><p>输出用r&#39;&#39;表示&#39;&#39;内部的字符串默认不转义
-1234print('\\\t\\')#\       \print(r'\\\t\\')#\\\t\\
-用&#39;&#39;&#39;...&#39;&#39;&#39;的格式表示多行内容
-123print('''line1line2...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-03-29</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2017/03/23/ 前端状态管理之Flux、Redux、Vuex/">前端状态管理之Flux、Redux、Vuex</a></h3></div><div class="post-content"><p>
-Flux是一种前端状态管理架构思想。基于 Flux 的设计思想，出现了一批前端状态管理框架。比较主流的就是 Vuex 和 Redux 了。
-
-两篇特别好的文章
-浅谈前端状态管理（上）
-浅谈前端状态管理（下）
-Flux Flux 的思维方式是单向的，将修改数据层的 controller 代码收归一处，统一管理，组...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-03-23</span><i class="fa fa-tag"></i></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/page/2/">Próximo</a></li></ul></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
+CommonJS定义的模块分为:模块引用(require)  模块定义(exports)...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-04-01</span><i class="fa fa-tag"></i><a class="tag" href="/tags/Web/" title="Web">Web </a></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/page/2/">Próximo</a></li></ul></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
