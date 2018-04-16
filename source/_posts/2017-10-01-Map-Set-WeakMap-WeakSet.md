@@ -1,7 +1,7 @@
 ---
 title: Map Set WeakMap WeakSet
 date: 2017-10-01 23:48:22
-tags:
+tags: JavaScript
 ---
 
 ### Set
@@ -31,7 +31,7 @@ Map 是有序键值对集合, 键值对的 key 和 value 可以是任何类型�
 
 可以用 `for...of`来遍历 set 跟 map
 
-返回可迭代对象的几个方法: entries(), keys(), values() 
+返回可迭代对象的几个方法: entries(), keys(), values()
 
 - 直接遍历 set 和 map 相当于遍历entries()
 - keys() 和values() 返回 key 和 value 的集合
