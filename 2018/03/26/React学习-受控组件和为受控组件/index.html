@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="lizimeow"><title>React学习-受控组件和非受控组件 · lizimeow's blog</title><meta name="description" content="React 受控组件与非受控组件(木偶组件和智能组件)在大多数情况下，我们推荐使用(木偶组件) 受控组件 来实现表单。
+
+受控组件(木偶组件): 表单数据由 React 组件处理
+非受控组件(智能组件): 表单数据由 DOM 处理
+
+非受控组件1234567891011121314151617181"><meta name="keywords" content="lizimeow blog hexo JavaScript"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">lizimeow's blog</a></h3><div class="description"><p>A Web developer, Nice to meet you :)</p></div></div></div><ul class="social-links"><li><a href="http://weibo.com/lizimeow"><i class="fa fa-weibo"></i></a></li><li><a href="http://github.com/lizimeow"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">Home</a></li><li><a href="/archives">Archive</a></li><li><a href="/links">Links</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>React学习-受控组件和非受控组件</a></h3></div><div class="post-content"><h1 id="React-受控组件与非受控组件-木偶组件和智能组件"><a href="#React-受控组件与非受控组件-木偶组件和智能组件" class="headerlink" title="React 受控组件与非受控组件(木偶组件和智能组件)"></a>React 受控组件与非受控组件(木偶组件和智能组件)</h1><p>在大多数情况下，我们推荐使用(木偶组件) <a href="https://doc.react-china.org/docs/forms.html" target="_blank" rel="noopener">受控组件</a> 来实现表单。</p>
+<ul>
+<li>受控组件(木偶组件): 表单数据由 React 组件处理</li>
+<li>非受控组件(智能组件): 表单数据由 DOM 处理</li>
+</ul>
+<h5 id="非受控组件"><a href="#非受控组件" class="headerlink" title="非受控组件"></a>非受控组件</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在非受控组件中接受单个属性</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NameForm</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.handleSubmit = <span class="keyword">this</span>.handleSubmit.bind(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleSubmit(event) &#123;</span><br><span class="line">    alert(<span class="string">'A name was submitted: '</span> + <span class="keyword">this</span>.input.value);</span><br><span class="line">    event.preventDefault();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;form onSubmit=&#123;<span class="keyword">this</span>.handleSubmit&#125;&gt;</span><br><span class="line">        &lt;label&gt;</span><br><span class="line">          Name:</span><br><span class="line">          &lt;input type=<span class="string">"text"</span> ref=&#123;(input) =&gt; <span class="keyword">this</span>.input = input&#125; /&gt;</span><br><span class="line">        &lt;<span class="regexp">/label&gt;</span></span><br><span class="line"><span class="regexp">        &lt;input type="submit" value="Submit" /</span>&gt;</span><br><span class="line">      &lt;<span class="regexp">/form&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>默认值</p>
+<p>在 React 的生命周期中，表单元素上的 <code>value</code> 属性将会覆盖 DOM 中的值。使用非受控组件时，通常希望 React 可以为其指定初始值。要解决这个问题，你可以指定一个 <code>defaultValue</code> 属性而不是 <code>value</code>。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;input</span><br><span class="line">    defaultValue=<span class="string">"Bob"</span></span><br><span class="line">    type=<span class="string">"text"</span></span><br><span class="line">    ref=&#123;(input) =&gt; <span class="keyword">this</span>.input = input&#125; /&gt;</span><br></pre></td></tr></table></figure>
+<p><code>&lt;input type=&quot;checkbox&quot;&gt;</code> 和 <code>&lt;input type=&quot;radio&quot;&gt;</code> 支持 <code>defaultChecked</code>，<code>&lt;select&gt;</code> 和 <code>&lt;textarea&gt;</code> 支持 <code>defaultValue</code>.</p>
+<h4 id="受控组件"><a href="#受控组件" class="headerlink" title="受控组件"></a>受控组件</h4><p>适用范围:</p>
+<ul>
+<li>实时反馈, 如验证</li>
+<li>当所有的数据都验证通过之后, 按钮才能取消 disable 状态</li>
+<li>强制执行特定的输入格式，如信用卡号码</li>
+</ul>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h5><p>受控组件和非受控组件都有各自的优点, 评估你的实际情况去选择受控组件或者非受控组件. 如果你的表单在UI反馈方面非常简单，那么非受控组件就足够了.</p>
+<table>
+<thead>
+<tr>
+<th>feature</th>
+<th>uncontrolled</th>
+<th>controlled</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>one-time value retrieval (e.g. on submit)</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="https://goshakkk.name/submit-time-validation-react/" target="_blank" rel="noopener">validating on submit</a></td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="https://goshakkk.name/instant-form-fields-validation-react/" target="_blank" rel="noopener">instant field validation</a></td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="https://goshakkk.name/form-recipe-disable-submit-button-react/" target="_blank" rel="noopener">conditionally disabling submit button</a></td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>enforcing input format</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>several inputs for one piece of data</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="https://goshakkk.name/array-form-inputs/" target="_blank" rel="noopener">dynamic inputs</a></td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2018-03-26</span><i class="fa fa-tag"></i><a class="tag" href="/tags/React/" title="React">React </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,http://lizimeow.com/2018/03/26/React学习-受控组件和为受控组件/,lizimeow's blog,React学习-受控组件和非受控组件,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2018/04/16/类型收窄/" title="Typescript 的类型收窄">Post Anterior</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2017/10/01/Map-Set-WeakMap-WeakSet/" title="Map Set WeakMap WeakSet">Próximo post</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
