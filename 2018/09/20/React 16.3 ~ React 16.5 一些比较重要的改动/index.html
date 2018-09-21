@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="lizimeow"><title>React 16.3 ~ React 16.5 一些比较重要的改动 · lizimeow's blog</title><meta name="description" content="v16.3.x(UNSAFE) 三个生命周期
+
+componentWillMount
+componentWillReceiveProps
+componentWillUpdate
+
+(新增) 两个生命周期
+
+static getDerivedStateFromProps(nextProps, prev"><meta name="keywords" content="lizimeow blog hexo JavaScript"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">lizimeow's blog</a></h3><div class="description"><p>A Web developer, Nice to meet you :)</p></div></div></div><ul class="social-links"><li><a href="http://weibo.com/lizimeow"><i class="fa fa-weibo"></i></a></li><li><a href="http://github.com/lizimeow"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">Home</a></li><li><a href="/archives">Archive</a></li><li><a href="/links">Links</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>React 16.3 ~ React 16.5 一些比较重要的改动</a></h3></div><div class="post-content"><h2 id="v16-3-x"><a href="#v16-3-x" class="headerlink" title="v16.3.x"></a>v16.3.x</h2><p><strong>(UNSAFE) 三个生命周期</strong></p>
+<ul>
+<li>componentWillMount</li>
+<li>componentWillReceiveProps</li>
+<li>componentWillUpdate</li>
+</ul>
+<p><strong>(新增) 两个生命周期</strong></p>
+<ul>
+<li>static getDerivedStateFromProps(nextProps, prevState)</li>
+<li>getSnapshotBeforeUpdate</li>
+</ul>
+<p>​    虽然在16的版本里面还能使用旧的三个生命周期, 但是新的生命周期和旧的生命周期不能同时出现在同一个组件, 否则会报错.</p>
+<h3 id="为什么要改"><a href="#为什么要改" class="headerlink" title="为什么要改"></a>为什么要改</h3><p>​    react 打算在 v17 推出 <a href="https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html" target="_blank" rel="noopener">Async Rendering</a>, 提出一种可以被打断的生命周期, 而可以被打断的阶段是实际 dom 挂载之前, virtual dom 的构建阶段, 也就是要被去掉的三个生命周期. 生命周期一旦被打断，下次恢复的时候又会再跑一次之前的生命周期，因此这三个方法都不能保证只在组件更新state/props/ref的时候刷新一次了，所以这三个方法被标记为不安全.</p>
+<h3 id="新的生命周期"><a href="#新的生命周期" class="headerlink" title="新的生命周期"></a>新的生命周期</h3><h5 id="static-getDerivedStateFromProps"><a href="#static-getDerivedStateFromProps" class="headerlink" title="static getDerivedStateFromProps"></a>static getDerivedStateFromProps</h5><ul>
+<li><p>触发时间: mounting &amp; updating</p>
+<p>v16.3.0: updating 中只有 new props 会触发该生命周期</p>
+<p><strong>v.16.4之后: new props, setState, forceUpdate 都会触发该生命周期</strong></p>
+</li>
+<li><p>这是一个 static 方法, 意味着拿不到实例的 this</p>
+</li>
+<li><p>每次接收新的 props 之后都会返回一个对象作为新的 state, 返回 null 则说明不需要更新 state</p>
+</li>
+<li><p>配合 <code>componentDidUpdate</code>, 可以覆盖<code>componentWillReceiveProps</code>的所有用法</p>
+</li>
+</ul>
+<h5 id="getSnapshotBeforeUpdate"><a href="#getSnapshotBeforeUpdate" class="headerlink" title="getSnapshotBeforeUpdate"></a>getSnapshotBeforeUpdate</h5><ul>
+<li>触发时间: 在 DOM updated 之前</li>
+<li>返回一个值, 作为<code>componentDidUpdate</code>的第三个参数</li>
+<li>配合<code>componentDidUpdate</code>, 可以覆盖 <code>componentWillUpdate</code> 的所有用法</li>
+<li>通常不需要此生命周期, 但在重新渲染期间手动保留滚动位置的情况下可能很有用</li>
+</ul>
+<h3 id="生命周期具体应用"><a href="#生命周期具体应用" class="headerlink" title="生命周期具体应用"></a>生命周期具体应用</h3><ol>
+<li>Updating state based on props</li>
+</ol>
+<p>因为不能使用<code>this.props</code> 与<code>nextProps</code> 进行对比, 所以可以额外写一个 state 来记录上一个 props</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if (nextProps.currentRow !== prevState.lastRow) &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    ...</span><br><span class="line">    lastRow: nextProps.currentRow,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">// No state update necessary</span><br><span class="line">return null;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>Fetching external data when props change</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// old</span><br><span class="line">  componentWillReceiveProps(nextProps) &#123;</span><br><span class="line">    if (nextProps.id !== this.props.id) &#123;</span><br><span class="line">    	this.setState(&#123;externalData: null&#125;);</span><br><span class="line">      this._loadAsyncData(nextProps.id);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// new</span><br><span class="line">  static getDerivedStateFromProps(nextProps, prevState) &#123;</span><br><span class="line">    // Store prevId in state so we can compare when props change.</span><br><span class="line">    if (nextProps.id !== prevState.prevId) &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        externalData: null,</span><br><span class="line">        prevId: nextProps.id,</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    // No state update necessary</span><br><span class="line">    return null;</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidUpdate(prevProps, prevState) &#123;</span><br><span class="line">    if (this.state.externalData === null) &#123;</span><br><span class="line">      this._loadAsyncData(this.props.id);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="official-context-API"><a href="#official-context-API" class="headerlink" title="official context API"></a>official context API</h3><p>Note: 旧的 context API 会兼容 v16.x</p>
+<p><a href="https://reactjs.org/docs/context.html" target="_blank" rel="noopener">文档</a></p>
+<h3 id="createRef-API"><a href="#createRef-API" class="headerlink" title="createRef API"></a>createRef API</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class MyComponent extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line"></span><br><span class="line">    this.inputRef = React.createRef();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;input type=&quot;text&quot; ref=&#123;this.inputRef&#125; /&gt;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    this.inputRef.current.focus();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Note: 除了新的 createRef API 之外, 还将继续支持回调引用, 无需替换你的组件中的 callback refs</p>
+<h3 id="forwardRef-API"><a href="#forwardRef-API" class="headerlink" title="forwardRef API"></a>forwardRef API</h3><p>高阶组件是在组件之间重用代码的常用方法, 高阶组件可以传递 props, 但是 refs 传递不了, 新的 forwardRef API 就解决了这个问题, 它能将 ref 转化为普通的 prop</p>
+<p><a href="https://reactjs.org/docs/react-api.html#reactforwardref" target="_blank" rel="noopener">文档</a></p>
+<h3 id="StrictMode-Component"><a href="#StrictMode-Component" class="headerlink" title="StrictMode Component"></a>StrictMode Component</h3><p>与Fragment一样, StrictMode不会呈现任何可见的UI. 它会为其后代激活其他检查和警告. StrictMode检查仅在开发模式下运行, 它们不影响生产构建. <a href="https://reactjs.org/docs/strict-mode.html" target="_blank" rel="noopener">文档</a></p>
+<p>作用:</p>
+<ul>
+<li>识别 unsafe lifecycle</li>
+<li>关于string ref API 使用的警告</li>
+<li>检测意外的副作用</li>
+</ul>
+<h2 id="v16-4-x"><a href="#v16-4-x" class="headerlink" title="v16.4.x"></a>v16.4.x</h2><h3 id="Pointer-Events"><a href="#Pointer-Events" class="headerlink" title="Pointer Events"></a>Pointer Events</h3><p><a href="https://react.docschina.org/blog/2018/05/23/react-v-16-4.html#pointer-events" target="_blank" rel="noopener">文档</a></p>
+<h3 id="bugfix-for-getDervedStateFromProps"><a href="#bugfix-for-getDervedStateFromProps" class="headerlink" title="bugfix for getDervedStateFromProps"></a>bugfix for getDervedStateFromProps</h3><p>在上面段落已经提过, v.16.4.0之后: mounting, new props, setState, forceUpdate 都会触发 <code>getDervedStateFromProps</code></p>
+<p>Note: 谨慎使用 derived state</p>
+<h2 id="v16-5-x"><a href="#v16-5-x" class="headerlink" title="v16.5.x"></a>v16.5.x</h2><h3 id="React-Profiler"><a href="#React-Profiler" class="headerlink" title="React Profiler"></a>React Profiler</h3><p>​    React 16.5 支持新的 profiler DevTools 插件, 这个插件使用 React 的<a href="https://github.com/reactjs/rfcs/pull/51" target="_blank" rel="noopener">experimental Profiler API</a> 来收集每个组件渲染时间, 目的是为了找出你的 React App 的性能瓶颈。它将会和即将发布的 <a href="https://reactjs.org/blog/2018/03/01/sneak-peek-beyond-react-16.html" target="_blank" rel="noopener">time slicing and suspense</a>  特性完全兼容.</p>
+<p><a href="https://reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html" target="_blank" rel="noopener">文档</a></p>
+<p>Note: <code>react-dom</code> 16.5+ 和 <code>react-native</code> 0.57+ </p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2018-09-20</span><i class="fa fa-tag"></i><a class="tag" href="/tags/React/" title="React">React </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,http://lizimeow.com/2018/09/20/React 16.3 ~ React 16.5 一些比较重要的改动/,lizimeow's blog,React 16.3 ~ React 16.5 一些比较重要的改动,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/2018/04/16/类型收窄/" title="Typescript 的类型收窄">Próximo post</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
